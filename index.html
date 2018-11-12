@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script type="text/javascript">
+            function someFunc(){
+                var newReq = new XMLHttpRequest();
+                
+                newReq.onreadystatechange = function() {
+                    
+                    if (newReq.readyState == 4 && newReq.status == 200) {
+                        alert(newReq.responseText);
+                    }
+                };
+                
+                newReq.open('GET', "/request.php?q=definition");
+                newReq.send();
+            };
+        </script>
+    </head>
+    
+    <body>
+        <div id = "main">
+            Definition
+        </div>
+        
+        <div><button onclick = "someFunc()" id ="someButton">Search</button></div>
+    </body>
+</html>
