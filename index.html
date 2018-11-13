@@ -2,6 +2,7 @@
 <html>
     <head>
         <title> </title>
+        <!--Remember to make changes and commit before excercise 4-->
         <script type="text/javascript">
             function someFunc(){
                 var newReq = new XMLHttpRequest();
@@ -9,21 +10,49 @@
                 newReq.onreadystatechange = function() {
                     
                     if (newReq.readyState == 4 && newReq.status == 200) {
-                        alert(newReq.responseText);
+                        document.getElementById("result").innerHTML = newReq.responseText;
                     }
                 };
-                
-                newReq.open('GET', "/request.php?q=definition");
+                newReq.open('get', "request.php?q=" + document.getElementsByClassName("define")[0].value);
+                //newReq.setRequestHeader('q',document.forms.namedItem("q"));
                 newReq.send();
             };
         </script>
+        <style type="text/css">
+            body {
+                display: grid;
+                grid-template-columns: 700px;
+                grid-template-rows: 200px 200px 200px;
+                grid-gap:20px;
+                margin: 30px auto auto 200px;
+            }
+            
+            .header{
+                text-align: center;
+                background: #EEEEEE;
+                font-size: 25px;
+                font-weight: bold;   
+            }
+            
+        </style>
+        
     </head>
     
     <body>
-        <div id = "main">
-            Definition
+        <div class = "header">
+        <head>Web Dictionary</head>
         </div>
         
-        <div><button onclick = "someFunc()" id ="someButton">Search</button></div>
+        <div id = "form">
+            <form name = "search" method = "POST">
+                <input type="text" name="q" class = "define"/>
+                <input onclick = "someFunc()" type="button" value="Search"/>
+            </form>
+        </div>
+        <div id = "result">
+            Your result goes here
+        </div>
+        
+        <!--<div><button onclick = "someFunc()" id ="someButton">Search</button></div>-->
     </body>
 </html>
